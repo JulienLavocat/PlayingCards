@@ -1,0 +1,22 @@
+{
+	"name": "@piigo/playingcards",
+	"version": "0.0.0",
+	"description": "Playing Cards",
+	"main": "dist/index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc",
+		"start": "ts-node src/test/index.ts",
+		"format": "prettier --write \"src/**/*.ts\""
+	},
+	"author": "Julien Lavocat",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/chai": "^4.2.12",
+		"@types/mocha": "^8.0.0",
+		"@types/node": "^14.0.27",
+		"chai": "^4.2.0",
+		"mocha": "^8.0.1",
+		"ts-node": "^8.10.2"
+	}
+}
