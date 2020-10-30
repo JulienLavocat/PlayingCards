@@ -1,5 +1,4 @@
-import { Deck } from "../Deck";
-import { CardStack } from '../CardStack';
+import {Deck, Pile} from "../index";
 
 const deck = Deck.builder()
 	.unshuffled()
@@ -18,10 +17,10 @@ console.log(stack2.draw(1));
 const stack = new CardStack(deck.drawBottom(2), false);
 console.log(stack.draw(1));
 
-//console.log(deck.drawBottom(2));
+console.log(deck.drawBottom(2));
 
-// pile.add(deck.draw(3));
-// console.log(pile.getCards());
-// pile.addBottom(deck.draw(1));
-// console.log(pile.getCards());
-// console.log(pile.draw());
+pile.add(deck.draw(3));
+console.log(pile.getCards());
+pile.addBottom(deck.draw(1));
+console.log(pile.getCards());
+console.log(pile.draw());
