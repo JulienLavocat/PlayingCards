@@ -33,7 +33,6 @@ export class Deck {
 	}
 
 	reset(shuffle: boolean = false) {
-
 		this.updatedAt = new Date();
 
 		let cards: string[] = [];
