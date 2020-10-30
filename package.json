@@ -1,6 +1,6 @@
 {
 	"name": "@piigo/playingcards",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Playing Cards",
 	"main": "dist/index.js",
 	"scripts": {
@@ -12,7 +12,11 @@
 	"author": "Julien Lavocat",
 	"license": "ISC",
 	"devDependencies": {
+		"@types/chai": "^4.2.14",
+		"@types/mocha": "^8.0.3",
 		"@types/node": "^14.0.27",
-		"ts-node": "^8.10.2"
-	}
+		"chai": "^4.2.0",
+		"mocha": "^8.2.0"
+	},
+	"dependencies": {}
 }
