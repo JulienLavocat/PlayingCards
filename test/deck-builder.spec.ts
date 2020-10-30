@@ -22,6 +22,11 @@ describe("DeckBuilder", () => {
 		expect(deck.getCards()).to.eql(["Card", "Card", "Card", "Card", "Card", "Card"]);
 	});
 	it("Should shuffle a deck", () => {
-		// TODO
+		const deck = Deck.builder().unshuffled().create();
+		deck.shuffle();
+		expect(deck).to.be.an.instanceOf(Deck);
+		expect(deck.getCards().length).to.equals(52);
+		expect(deck.isShuffled()).to.equals(true);
+		// TODO check if cards are being shuffled
 	});
 });
