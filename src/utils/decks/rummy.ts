@@ -1,4 +1,4 @@
-import { DeckParams } from './deckParams';
+import { DeckParams } from "./deckParams";
 export const CARDS = [
 	"AS",
 	"2S",
@@ -53,10 +53,10 @@ export const CARDS = [
 	"QH",
 	"KH",
 	"J",
-	"J"
+	"J",
 ];
 
-export default function(): DeckParams {
+export default function (): DeckParams {
 	const deckCount = 2;
 	const cards: string[] = [];
 
@@ -65,6 +65,6 @@ export default function(): DeckParams {
 	return {
 		type: "rummy",
 		count: deckCount,
-		cards: cards
+		cards: cards,
 	};
-};
+}

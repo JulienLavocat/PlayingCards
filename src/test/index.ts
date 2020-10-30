@@ -1,6 +1,4 @@
-import * as utils from '../utils';
-import { Deck } from '../Deck';
-import { generators } from '../utils/decks/index';
+import { Deck } from "../Deck";
 
 const deck = Deck.builder()
 	.unshuffled()
@@ -9,11 +7,21 @@ const deck = Deck.builder()
 	//.standard32()
 	.create();
 
-deck.shuffle();
+//deck.shuffle();
 
-console.log(deck.cards);
+console.log(deck.remaining());
 
-//console.log(deck.draw(1));
-console.log(deck.drawBottom(2))
+console.log(deck.getCards());
 
-console.log(deck.cards);
+console.log(deck.draw());
+console.log(deck.drawBottom());
+
+console.log(deck.getCards());
+
+deck.reset();
+console.log(deck.getCards());
+
+deck.reset(true);
+console.log(deck.getCards());
+
+console.log(deck.remaining());

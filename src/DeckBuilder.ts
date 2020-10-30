@@ -1,11 +1,10 @@
-import { Deck } from './Deck';
-import { DeckParams } from './utils/decks/deckParams';
-import {deckGenerators} from "./utils"
-import { CardsLibError } from './CardsLibError';
-import { DeckQuery } from './utils/decks/deckQuery';
+import { Deck } from "./Deck";
+import { DeckParams } from "./utils/decks/deckParams";
+import { deckGenerators } from "./utils";
+import { CardsLibError } from "./CardsLibError";
+import { DeckQuery } from "./utils/decks/deckQuery";
 
 export class DeckBuilder {
-
 	private params: DeckQuery;
 	private isShuffled: boolean;
 	private type: string;
@@ -15,7 +14,7 @@ export class DeckBuilder {
 		this.type = "standard";
 		this.params = {
 			deckCount: 1,
-		}
+		};
 	}
 
 	unshuffled() {
@@ -65,7 +64,11 @@ export class DeckBuilder {
 	create(): Deck {
 		const deckGenerator = deckGenerators[this.type];
 		if (!deckGenerator)
-			throw new CardsLibError("Deck type " + this.type + "is not supported. Please use a custom deck type or submit a Pull Request");
+			throw new CardsLibError(
+				"Deck type " +
+					this.type +
+					"is not supported. Please use a custom deck type or submit a Pull Request"
+			);
 
 		return new Deck(deckGenerator(this.params), this.isShuffled);
 	}

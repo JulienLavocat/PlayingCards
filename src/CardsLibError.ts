@@ -1,3 +1,1 @@
-export class CardsLibError extends Error {
-
-}
+export class CardsLibError extends Error {}

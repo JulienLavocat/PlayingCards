@@ -1,12 +1,12 @@
-import { DeckQuery } from './deckQuery';
-import { DeckParams } from './deckParams';
+import { DeckQuery } from "./deckQuery";
+import { DeckParams } from "./deckParams";
 
 export const CARDS: string[] = [];
 
-export default function(params: DeckQuery): DeckParams {
+export default function (params: DeckQuery): DeckParams {
 	return {
 		type: "empty",
 		count: params.deckCount,
-		cards: []
+		cards: [],
 	};
-};
+}

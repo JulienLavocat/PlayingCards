@@ -1,5 +1,5 @@
-import { DeckQuery } from './deckQuery';
-import { DeckParams } from './deckParams';
+import { DeckQuery } from "./deckQuery";
+import { DeckParams } from "./deckParams";
 export const CARDS = [
 	"AS",
 	"2S",
@@ -78,10 +78,10 @@ export const CARDS = [
 	"19",
 	"20",
 	"21",
-	"Excuse"
+	"Excuse",
 ];
 
-export default function(params: DeckQuery): DeckParams {
+export default function (params: DeckQuery): DeckParams {
 	const cards: string[] = [];
 
 	for (let i = 0; i < params.deckCount; i++) cards.push.apply(cards, CARDS);
@@ -89,6 +89,6 @@ export default function(params: DeckQuery): DeckParams {
 	return {
 		type: "tarot",
 		count: params.deckCount,
-		cards: cards
+		cards: cards,
 	};
-};
+}

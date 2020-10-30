@@ -1,5 +1,5 @@
-import { DeckQuery } from './deckQuery';
-import { DeckParams } from './deckParams';
+import { DeckQuery } from "./deckQuery";
+import { DeckParams } from "./deckParams";
 export const CARDS = [
 	"AS",
 	"2S",
@@ -54,10 +54,10 @@ export const CARDS = [
 	"QH",
 	"KH",
 	"J",
-	"J"
+	"J",
 ];
 
-export default function(params: DeckQuery): DeckParams {
+export default function (params: DeckQuery): DeckParams {
 	const cards: string[] = [];
 
 	for (let i = 0; i < params.deckCount; i++) cards.push.apply(cards, CARDS);
@@ -65,6 +65,6 @@ export default function(params: DeckQuery): DeckParams {
 	return {
 		type: "standardJokers",
 		count: params.deckCount,
-		cards: cards
+		cards: cards,
 	};
-};
+}
