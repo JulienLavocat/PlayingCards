@@ -1,4 +1,5 @@
 import { Deck } from "../Deck";
+import { CardStack } from '../CardStack';
 
 const deck = Deck.builder()
 	.unshuffled()
@@ -7,11 +8,20 @@ const deck = Deck.builder()
 	//.standard32()
 	.create();
 
-//deck.shuffle();
+const pile = deck.getPile("test");
 
-console.log(deck.remaining());
-
-deck.reset(true);
 console.log(deck.getCards());
 
-console.log(deck.remaining());
+const stack2 = new CardStack(deck.draw(2), false);
+console.log(stack2.draw(1));
+
+const stack = new CardStack(deck.drawBottom(2), false);
+console.log(stack.draw(1));
+
+//console.log(deck.drawBottom(2));
+
+// pile.add(deck.draw(3));
+// console.log(pile.getCards());
+// pile.addBottom(deck.draw(1));
+// console.log(pile.getCards());
+// console.log(pile.draw());

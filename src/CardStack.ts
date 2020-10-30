@@ -15,8 +15,15 @@ export class CardStack {
 		this.isShuffled = true;
 	}
 
+	add(cards: string[]) {
+		this.cards.push(...cards);
+	}
+	addBottom(cards: string[]) {
+		this.cards.unshift(...cards);
+	}
+
 	draw(amount: number) {
-		return this.cards.splice(0, amount);
+		return this.cards.splice(0, amount).reverse();
 	}
 	drawBottom(amount: number) {
 		return this.cards.splice(-amount);

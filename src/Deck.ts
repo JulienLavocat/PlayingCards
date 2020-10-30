@@ -3,6 +3,8 @@ import { deckGenerators } from "./utils";
 import { DeckBuilder } from "./DeckBuilder";
 import { CardsLibError } from "./CardsLibError";
 import { CardStack } from "./CardStack";
+import { Pile } from './Pile';
+import { shuffle } from './utils/shuffle';
 
 export class Deck {
 	public createdAt: Date;
@@ -13,7 +15,7 @@ export class Deck {
 	private baseCards?: string[];
 
 	private cardStack: CardStack;
-	private piles: { [key: string]: CardStack };
+	private piles: { [key: string]: Pile };
 
 	static builder() {
 		return new DeckBuilder();
@@ -27,7 +29,7 @@ export class Deck {
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 
-		piles?.forEach((pile) => (this.piles[pile] = new CardStack([], false)));
+		piles?.forEach((pile) => (this.piles[pile] = new Pile(pile)));
 
 		this.cardStack = new CardStack(opts.cards, shuffle);
 	}
@@ -62,6 +64,13 @@ export class Deck {
 		this.cardStack.shuffle();
 	}
 
+	add(cards: string[] | string) {
+		if(typeof cards === "string")
+			this.cardStack.add([cards]);
+		else
+			this.cardStack.add(cards);
+	}
+
 	draw(amount: number = 1) {
 		this.updatedAt = new Date();
 		return this.cardStack.draw(amount);
@@ -79,5 +88,14 @@ export class Deck {
 	}
 	getCards() {
 		return this.cardStack.cards;
+	}
+
+	getPile(name: string, shuffle: boolean = false) {
+		let pile = this.piles[name];
+		if(pile)
+			return pile;
+
+		this.piles[name] = new Pile(name, shuffle);
+		return this.piles[name];
 	}
 }
