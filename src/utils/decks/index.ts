@@ -38,3 +38,5 @@ export const cards = {
 	standard32Jokers: STANDARD32_JOKERS_CARDS,
 	empty: EMPTY_CARDS,
 };
+
+export type DeckTypes = "standard" | "standardJokers" | "blackjack" | "tarot" | "rummy" | "standard32" | "standard32Jokers" | "empty" | "custom";

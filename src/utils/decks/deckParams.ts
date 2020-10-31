@@ -1,5 +1,7 @@
+import { DeckTypes } from ".";
+
 export interface DeckParams {
-	type: string;
+	type: DeckTypes;
 	count: number;
 	cards: string[];
 	baseCards?: string[];
