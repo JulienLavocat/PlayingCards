@@ -88,11 +88,8 @@ export class Deck {
 	 * Add cards at the top of the deck
 	 * @param cards cards to add
 	 */
-	add(cards: string[] | string) {
-		if(typeof cards === "string")
-			this.cardStack.add([cards]);
-		else
-			this.cardStack.add(cards);
+	add(cards: string[]) {
+		this.cardStack.add(cards);
 	}
 	/**
 	 * Add cards at the bottom of the deck
