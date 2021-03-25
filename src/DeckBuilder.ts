@@ -51,6 +51,10 @@ export class DeckBuilder {
 		this.type = "rummy";
 		return this;
 	}
+	uno() {
+		this.type = "uno";
+		return this;
+	}
 	empty() {
 		this.type = "empty";
 		return this;
