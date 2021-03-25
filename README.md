@@ -25,6 +25,7 @@ Currently, the lib only supports the following deck types :
  - blackjack
  - tarot
  - rummy
+ - uno
  - empty (no cards in deck)
  - custom with this you can pass an array of strings representing the cards you want to use.
 
