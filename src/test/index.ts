@@ -2,10 +2,11 @@ import {Deck, Pile} from "../index";
 import { CardStack } from '../CardStack';
 
 const deck = Deck.builder()
-	.unshuffled()
+	//.unshuffled()
 	//.custom(["TestCard1", "TestCard2"])
 	//.deckCount(2)
 	//.standard32()
+	.uno()
 	.create();
 
 const pile = deck.getPile("test");
