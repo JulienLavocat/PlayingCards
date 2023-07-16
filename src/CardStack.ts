@@ -23,9 +23,9 @@ export class CardStack {
 	}
 
 	draw(amount: number) {
-		return this.cards.splice(0, amount).reverse();
+		return this.cards.splice(-amount).reverse();
 	}
 	drawBottom(amount: number) {
-		return this.cards.splice(-amount);
+		return this.cards.splice(0, amount);
 	}
 }

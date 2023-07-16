@@ -3,14 +3,13 @@ import { deckGenerators } from "./utils";
 import { DeckBuilder } from "./DeckBuilder";
 import { CardsLibError } from "./CardsLibError";
 import { CardStack } from "./CardStack";
-import { Pile } from './Pile';
-import { shuffle } from './utils/shuffle';
+import { Pile } from "./Pile";
+import { shuffle } from "./utils/shuffle";
 
 /**
  * Represents a deck of cards
  */
 export class Deck {
-
 	/**
 	 * The moment the deck was created
 	 */
@@ -63,9 +62,7 @@ export class Deck {
 			const deckGenerator = deckGenerators[this.type];
 			if (!deckGenerator)
 				throw new CardsLibError(
-					"Deck type " +
-						this.type +
-						"is not supported. Please use a custom deck type or submit a Pull Request"
+					`Unsupported deck type "${this.type}". Please use a custom deck type or submit a Pull Request`
 				);
 
 			cards = deckGenerator({
@@ -138,14 +135,12 @@ export class Deck {
 	/**
 	 * Get or create a pile of cards in the deck.
 	 * @param name Name of the pile
-	 * @param shuffle (Optionnal) Should the new pile be shuffled.
 	 */
-	getPile(name: string, shuffle: boolean = false) {
+	getPile(name: string) {
 		let pile = this.piles[name];
-		if(pile)
-			return pile;
+		if (pile) return pile;
 
-		this.piles[name] = new Pile(name, shuffle);
+		this.piles[name] = new Pile(name);
 		return this.piles[name];
 	}
 }
