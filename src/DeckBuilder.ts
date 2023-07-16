@@ -65,13 +65,11 @@ export class DeckBuilder {
 		return this;
 	}
 
-	create(): Deck {
+	build(): Deck {
 		const deckGenerator = deckGenerators[this.type];
 		if (!deckGenerator)
 			throw new CardsLibError(
-				"Deck type " +
-					this.type +
-					"is not supported. Please use a custom deck type or submit a Pull Request"
+				`Deck type ${this.type} is not supported. Please use a custom deck type or submit a Pull Request`
 			);
 
 		return new Deck(deckGenerator(this.params), this.isShuffled);

@@ -1,40 +1,74 @@
-import { Deck } from "../src/Deck";
-import { expect } from "chai";
-import "mocha";
-import { CardStack } from '../src/CardStack';
+import { CardStack } from "../src/CardStack";
+import * as utils from "../src/utils";
 
 describe("CardStack", () => {
+	const cards = ["1", "2", "3", "4", "5", "6"].reverse();
 
-	const cards = ["1", "2", "3", "4", "5", "6"];
+	let stack: CardStack;
 
-	it("Should create a valid CardStack", () => {
-		const stack = new CardStack([...cards], false);
-		expect(stack).to.be.an.instanceOf(CardStack);
-		expect(stack.cards.length).to.equals(6);
+	beforeEach(() => {
+		stack = new CardStack([...cards], false);
 	});
 
-	it("Should draw 2 cards from the top of a CardStack", () => {
-		const stack = new CardStack([...cards], false);
+	describe("constructor()", () => {
+		it("should be defined", () => {
+			expect(stack).toBeInstanceOf(CardStack);
+		});
 
-		expect(stack).to.be.an.instanceOf(CardStack);
-		expect(stack.cards.length).to.equals(6);
-		expect(stack.draw(2)).to.eql(["1", "2"]);
+		it("should be created with 6 cards", () => {
+			expect(stack.cards).toHaveLength(6);
+		});
+
+		it("should not be shuffled", () => {
+			expect(stack.isShuffled).toBe(false);
+		});
 	});
 
-	it("Should draw 2 cards from the bottom of a CardStack", () => {
-		const stack = new CardStack([...cards], false);
-
-		expect(stack).to.be.an.instanceOf(CardStack);
-		expect(stack.cards.length).to.equals(6);
-		expect(stack.drawBottom(2)).to.eql(["5", "6"]);
+	describe("draw()", () => {
+		it("Should draw 2 cards from the top of a CardStack", () => {
+			expect(stack.cards).toHaveLength(6);
+			expect(stack.draw(2)).toStrictEqual(["1", "2"]);
+			expect(stack.cards).toHaveLength(4);
+		});
 	});
 
-	it("Should shuffle a CardStack", () => {
-		const stack = new CardStack([...cards], false);
-		stack.shuffle();
+	describe("drawBottom()", () => {
+		it("Should draw 2 cards from the bottom of a CardStack", () => {
+			expect(stack.cards).toHaveLength(6);
+			expect(stack.drawBottom(2)).toEqual(["6", "5"]);
+			expect(stack.cards).toHaveLength(4);
+		});
+	});
 
-		expect(stack).to.be.an.instanceOf(CardStack);
-		expect(stack.cards.length).to.equals(6);
-		expect(stack.isShuffled).to.equals(true);
+	describe("shuffle()", () => {
+		it("Should shuffle a CardStack", () => {
+			const shuffleSpy = jest.spyOn(utils, "shuffle");
+
+			stack.shuffle();
+
+			expect(stack.cards).toHaveLength(6);
+			expect(stack.isShuffled).toBe(true);
+			expect(shuffleSpy).toHaveBeenCalled();
+		});
+	});
+
+	describe("add()", () => {
+		it("Should add 2 cards to the top of a CardStack", () => {
+			expect(stack.cards).toHaveLength(6);
+			stack.add(["7", "8"]);
+			expect(stack.cards).toHaveLength(8);
+			expect(stack.cards[6]).toBe("7");
+			expect(stack.cards[7]).toBe("8");
+		});
+	});
+
+	describe("addBottom()", () => {
+		it("Should add 2 cards to the bottom of a CardStack", () => {
+			expect(stack.cards).toHaveLength(6);
+			stack.addBottom(["7", "8"]);
+			expect(stack.cards).toHaveLength(8);
+			expect(stack.cards[0]).toBe("7");
+			expect(stack.cards[1]).toBe("8");
+		});
 	});
 });

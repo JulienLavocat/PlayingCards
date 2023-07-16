@@ -1,28 +1,27 @@
-import { CardStack } from './CardStack';
+import { CardStack } from "./CardStack";
 
 /**
  * Represents a pile of cards
  */
 export class Pile {
-
 	/**
 	 * Name of the pile
 	 */
-	public name: string;
+	private readonly name: string;
 	/**
 	 * The moment the deck was created
 	 */
-	public createdAt: Date;
+	private readonly createdAt: Date;
 	/**
 	 * The moment the deck was last updated (draw, shuffle, reset, ...)
 	 */
-	public updatedAt: Date;
+	private updatedAt: Date;
 
 	private cardStack: CardStack;
 
-	constructor(name: string, shuffle: boolean = false) {
+	constructor(name: string) {
 		this.name = name;
-		this.cardStack = new CardStack([], shuffle);
+		this.cardStack = new CardStack([], false);
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
@@ -31,8 +30,8 @@ export class Pile {
 	 * Shuffle the remaining cards in the pile
 	 */
 	shuffle() {
-		this.updatedAt = new Date();
 		this.cardStack.shuffle();
+		this.updatedAt = new Date();
 	}
 
 	/**
@@ -41,6 +40,7 @@ export class Pile {
 	 */
 	add(cards: string[]) {
 		this.cardStack.add(cards);
+		this.updatedAt = new Date();
 	}
 	/**
 	 * Add cards at the bottom of the pile
@@ -48,6 +48,7 @@ export class Pile {
 	 */
 	addBottom(cards: string[]) {
 		this.cardStack.addBottom(cards);
+		this.updatedAt = new Date();
 	}
 
 	/**
@@ -55,16 +56,18 @@ export class Pile {
 	 * @param amount (Optionnal) amount of cards to draw, defaults to 1
 	 */
 	draw(amount: number = 1) {
+		const result = this.cardStack.draw(amount);
 		this.updatedAt = new Date();
-		return this.cardStack.draw(amount);
+		return result;
 	}
 	/**
 	 * Draw one or more cards from the bottom of the pile
 	 * @param amount (Optionnal) amount of cards to draw, defaults to 1
 	 */
 	drawBottom(amount: number = 1) {
+		const result = this.cardStack.drawBottom(amount);
 		this.updatedAt = new Date();
-		return this.cardStack.drawBottom(amount);
+		return result;
 	}
 
 	/**
@@ -86,4 +89,27 @@ export class Pile {
 		return this.cardStack.cards;
 	}
 
+	/**
+	 * Return the name of the pile
+	 * @returns the name of the pile
+	 */
+	getName() {
+		return this.name;
+	}
+
+	/**
+	 * Return the moment the pile was created
+	 * @returns the moment the pile was created
+	 */
+	getCreatedAt() {
+		return this.createdAt;
+	}
+
+	/**
+	 * Return the moment the pile was last updated
+	 * @returns the moment the pile was last updated
+	 */
+	getUpdatedAt() {
+		return this.updatedAt;
+	}
 }

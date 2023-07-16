@@ -1,5 +1,5 @@
-import {Deck, Pile} from "../index";
-import { CardStack } from '../CardStack';
+import { Deck, Pile } from "../index";
+import { CardStack } from "../CardStack";
 
 const deck = Deck.builder()
 	//.unshuffled()
