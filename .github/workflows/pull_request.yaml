@@ -1,0 +1,16 @@
+on:
+    pull_request:
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            # Checkout the repository, build the project, run tests, generate a version using semantic release
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: 18
+                  cache: "yarn"
+            - run: yarn install --frozen-lockfile
+            - run: yarn build
+            - run: yarn ci:test
